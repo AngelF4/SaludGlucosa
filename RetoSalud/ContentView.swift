@@ -8,12 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var username = ""
-    @State private var password = ""
-    @State private var wrongUsername = ""
-    @State private var wrongPassword = ""
-    @State private var showingLoginScreen = false
-    
     @State private var pageIndex = 0
     private let pages: [Page] = Page.samplePages
     private let dotAppearance = UIPageControl.appearance()
@@ -89,7 +83,7 @@ struct ContentView: View {
                     
                     // Botones de navegación
                     VStack {
-                        NavigationLink(destination: SignInView()) {
+                        NavigationLink(destination: SignUpView()) {
                             Text("Regístrate")
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)

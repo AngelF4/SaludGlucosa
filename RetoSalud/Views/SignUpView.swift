@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct SignInView: View {
-    @StateObject private var viewModel = SigninViewModel()
+struct SignUpView: View {
+    @StateObject private var viewModel = SignupViewModel()
     @FocusState private var isUsernameFocused: Bool
+    @FocusState private var isEmailFocused: Bool
     @FocusState private var isPasswordFocused: Bool
+    @FocusState private var isConfirmPasswordFocused: Bool
     
     var body: some View {
         ZStack {
@@ -61,7 +63,7 @@ struct SignInView: View {
             ScrollView {
                 VStack(spacing: 30) {
                     Spacer()
-                        .frame(height: 60)
+                        .frame(height: 20)
                     
                     // Header
                     VStack(spacing: 8) {
@@ -69,35 +71,48 @@ struct SignInView: View {
                             .font(.system(size: 32, weight: .bold, design: .rounded))
                             .foregroundColor(.pink)
                         
-                        Text("Inicia sesión para continuar")
+                        Text("Regístrate para continuar")
                             .font(.system(size: 16, weight: .medium))
                             .foregroundColor(.secondary)
                     }
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 5)
                     
                     // Formulario
                     VStack(alignment: .leading, spacing: 25) {
-                        // Campo de usuario
+                            InputAuthField(
+                                icon: "person.fill",
+                                title: "Usuario",
+                                placeholder: "Ingresa tu usuario",
+                                text: $viewModel.username,
+                                isFocused: $isUsernameFocused,
+                                textContentType: .username
+                            )
                         InputAuthField(
                             icon: "person.fill",
-                            title: "Usuario",
-                            placeholder: "Ingresa tu usuario",
-                            text: $viewModel.username,
-                            isFocused: $isUsernameFocused,
+                            title: "Correo electrónico",
+                            placeholder: "Ingresa tu correo electrónico",
+                            text: $viewModel.email,
+                            isFocused: $isEmailFocused,
                             textContentType: .username
                         )
+                            SecureInputAuthField(
+                                icon: "lock.fill",
+                                title: "Contraseña",
+                                placeholder: "Ingresa tu contraseña",
+                                text: $viewModel.password,
+                                isSecured: $viewModel.isSecured,
+                                isFocused: $isPasswordFocused
+                            )
                         SecureInputAuthField(
                             icon: "lock.fill",
-                            title: "Contraseña",
-                            placeholder: "Ingresa tu contraseña",
-                            text: $viewModel.password,
+                            title: "Confirmar contraseña",
+                            placeholder: "Confirma tu contraseña",
+                            text: $viewModel.confirmPassword,
                             isSecured: $viewModel.isSecured,
-                            isFocused: $isPasswordFocused
+                            isFocused: $isConfirmPasswordFocused
                         )
-                        
                     }
                     .padding(.horizontal, 30)
-                    
                     
                     // Botón de login
                     Button(action: {
@@ -136,6 +151,9 @@ struct SignInView: View {
                     .disabled(!viewModel.isFormValid || viewModel.isLoading)
                     .opacity(viewModel.isFormValid ? 1.0 : 0.6)
                     
+                    Spacer()
+                        .frame(height: 20)
+                    
                     // Enlaces adicionales
                     VStack(spacing: 15) {
                         Button("¿Olvidaste tu contraseña?") {
@@ -145,24 +163,20 @@ struct SignInView: View {
                         .foregroundColor(.pink)
                         
                         HStack {
-                            Text("¿No tienes cuenta?")
+                            Text("¿Ya tienes cuenta?")
                                 .font(.system(size: 14))
                                 .foregroundColor(.secondary)
                             
-                            Button("Regístrate") {
-                                viewModel.goToSignup()
+                            Button("Inicia sesión") {
+                                viewModel.goToSignin()
                             }
-                            .foregroundColor(.pink)
-                            
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(.pink)
                         }
                     }
-                    .fullScreenCover(isPresented: $viewModel.showSignup) {
-                        SignUpView()
+                    .fullScreenCover(isPresented: $viewModel.showSignin) {
+                        SignInView()
                     }
-                    Spacer()
-                        .frame(height: 50)
                 }
             }
         }
@@ -183,5 +197,5 @@ struct SignInView: View {
 }
 
 #Preview {
-    SignInView()
+    SignUpView()
 }

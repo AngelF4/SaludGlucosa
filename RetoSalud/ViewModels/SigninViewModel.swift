@@ -8,20 +8,17 @@
 import SwiftUI
 import Combine
 
-class SignupViewModel: ObservableObject {
+class SigninViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var username: String = ""
-    @Published var email: String = ""
     @Published var password: String = ""
-    @Published var confirmPassword: String = ""
     @Published var isSecured: Bool = true
     @Published var isLoading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     @Published var isLoggedIn: Bool = false
-    @Published var showSignin: Bool = false
+    @Published var showSignup: Bool = false
 
-    
     // MARK: - Validation
     var isFormValid: Bool {
         !username.isEmpty && !password.isEmpty && password.count >= 6
@@ -34,25 +31,11 @@ class SignupViewModel: ObservableObject {
         return username.count < 3 ? "El usuario debe tener al menos 3 caracteres" : nil
     }
     
-    var emailError: String? {
-        if !email.contains("@") {
+    var passwordError: String? {
+        if password.isEmpty {
             return nil
         }
-        return username.count < 3 ? "Debes ingresar un correo electrónico válido" : nil
-    }
-    
-    var passwordError: String? {
-        guard !password.isEmpty else { return nil }
-        
-        if password != confirmPassword {
-            return "Las contraseñas no coinciden"
-        }
-        
-        if password.count < 6 {
-            return "La contraseña debe tener al menos 6 caracteres"
-        }
-        
-        return nil
+        return password.count < 6 ? "La contraseña debe tener al menos 6 caracteres" : nil
     }
     
     // MARK: - Actions
@@ -94,8 +77,8 @@ class SignupViewModel: ObservableObject {
         showError("Funcionalidad de recuperación de contraseña")
     }
     
-    func goToSignin() {
-        showSignin = true
+    func goToSignup() {
+        showSignup = true
     }
     
     private func showError(_ message: String) {
@@ -106,8 +89,6 @@ class SignupViewModel: ObservableObject {
     // MARK: - Cleanup
     func clearFields() {
         username = ""
-        email = ""
-        confirmPassword = ""
         password = ""
         isSecured = true
     }
