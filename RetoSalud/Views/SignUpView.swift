@@ -16,50 +16,6 @@ struct SignUpView: View {
     
     var body: some View {
         ZStack {
-            // Fondo con gradiente rosa del sistema
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color.pink.opacity(0.1),
-                    Color.pink.opacity(0.2)
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
-            // Elementos decorativos
-            GeometryReader { geometry in
-                // Círculo superior derecho
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.red.opacity(0.3),
-                                Color.red.opacity(0.1)
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 200, height: 200)
-                    .position(x: geometry.size.width - 50, y: 100)
-                
-                // Círculo inferior izquierdo
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.pink.opacity(0.4),
-                                Color.pink.opacity(0.05)
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 150, height: 150)
-                    .position(x: 75, y: geometry.size.height - 150)
-            }
-            
             ScrollView {
                 VStack(spacing: 30) {
                     Spacer()
