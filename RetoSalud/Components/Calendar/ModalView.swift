@@ -18,17 +18,17 @@ private struct dataCard: Identifiable {
 struct ModalView: View {
     
     private let data = [
-        dataCard(iconName: "sunrise.fill", title: "Trackear", subtitle: [
+        dataCard(iconName: "sunrise.fill", title: "Desayuno", subtitle: [
             "Tu comida 1",
             "Tu comida 2",
             "Tu comida 3"
         ], foregroundStyle: .yellow),
-        dataCard(iconName: "sun.max.fill", title: "Medir alimentos", subtitle: [
+        dataCard(iconName: "sun.max.fill", title: "Comida", subtitle: [
             "Tu comida 1",
             "Tu comida 2",
             "Tu comida 3"
         ], foregroundStyle: .orange),
-        dataCard(iconName: "moon.fill", title: "Medir alimentos", subtitle: [
+        dataCard(iconName: "moon.fill", title: "Cena", subtitle: [
             "Tu comida 1",
             "Tu comida 2",
             "Tu comida 3"
@@ -74,8 +74,14 @@ struct ModalView: View {
                 ForEach(data, id: \.id) { item in
                     // Card content
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(item.title)
-                            .font(.headline)
+                        HStack {
+                            Text(item.title)
+                                .font(.headline)
+                            Spacer()
+                            Image(systemName: item.iconName)
+
+                        }
+                        .foregroundStyle(.secondary)
                         ForEach(item.subtitle, id: \.self) { subtitle in
                             HStack(alignment: .top, spacing: 8) {
                                 Text("•")
@@ -90,11 +96,6 @@ struct ModalView: View {
                     .padding(20)
                     .background(item.foregroundStyle.quaternary)
                     .cornerRadius(20)
-                    .overlay(
-                        Image(systemName: "plus")
-                            .padding(),
-                        alignment: .topTrailing
-                    )
                     .padding([.bottom, .horizontal])
                     
                 }

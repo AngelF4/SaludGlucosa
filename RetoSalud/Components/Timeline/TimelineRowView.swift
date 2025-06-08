@@ -11,6 +11,8 @@ struct TimelineRowView: View {
     let item: TimelineItem
     let isFirst: Bool
     let isLast: Bool
+    
+    let namespace: Namespace
 
     var body: some View {
         HStack(alignment: .top) {
@@ -44,8 +46,20 @@ struct TimelineRowView: View {
 
             // Card content
             VStack(alignment: .leading, spacing: 10) {
-                Text(item.title)
-                    .font(.headline)
+                HStack {
+                    Text(item.title)
+                        .font(.headline)
+                    Spacer()
+                    NavigationLink {
+                        AgregarPlatilloView()
+                            .navigationTransition(.zoom(sourceID: "zoom", in: namespace.wrappedValue))
+
+                    } label: {
+                        Image(systemName: "plus")
+                            .bold()
+                    }
+                    
+                }
                 Text(item.subtitle)
                     .font(.headline)
                     .foregroundColor(.secondary)
@@ -54,16 +68,13 @@ struct TimelineRowView: View {
             .padding(20)
             .background(item.foregroundStyle.quaternary)
             .cornerRadius(20)
-            .overlay(
-                Image(systemName: "plus")
-                    .padding(),
-                alignment: .topTrailing
-            )
             .padding(.bottom)
         }
     }
 }
 
 #Preview {
-    HomeView()
+    NavigationStack {
+        HomeView()
+    }
 }
