@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct TimelineView: View {
+    @EnvironmentObject var viewModel: MenuViewModel
     let items: [TimelineItem]
     
     let namespace: Namespace
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ForEach(items.indices) { index in
+            ForEach(items, id: \.id) { item in
                 TimelineRowView(
-                    item: items[index],
-                    isFirst: index == 0,
-                    isLast: index == items.count - 1,
+                    item: item,
+                    isFirst: item.id == items.first?.id,
+                    isLast: item.id == items.last?.id,
                     namespace: namespace
                 )
+                .environmentObject(viewModel)
             }
         }
     }

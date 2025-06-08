@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
+    @EnvironmentObject var appState: AppState
     @StateObject private var viewModel = SigninViewModel()
     @FocusState private var isUsernameFocused: Bool
     @FocusState private var isPasswordFocused: Bool
@@ -128,7 +129,7 @@ struct SignInView: View {
         }
         .fullScreenCover(isPresented: $showHome) {
             NavigationStack {
-                HomeView()
+                HomeView().environmentObject(appState.menuViewModel)
             }
         }
         .onTapGesture {

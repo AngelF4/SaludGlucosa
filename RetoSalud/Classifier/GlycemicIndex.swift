@@ -71,7 +71,7 @@ let tipoAlimento: [String: TipoAlimento] = [
     "arroz blanco": .carbohidrato,
     "repostería": .carbohidrato,
     "pasta": .carbohidrato,
-    "bebidas endulzadas": .carbohidrato
+    "bebidas endulzadas": .carbohidrato,
 ]
 
 let traducciones: [String: String] = [

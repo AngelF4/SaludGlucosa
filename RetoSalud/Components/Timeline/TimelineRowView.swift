@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TimelineRowView: View {
+    @EnvironmentObject var viewModel: MenuViewModel
     let item: TimelineItem
     let isFirst: Bool
     let isLast: Bool
@@ -52,8 +53,8 @@ struct TimelineRowView: View {
                     Spacer()
                     NavigationLink {
                         AgregarPlatilloView()
+                            .environmentObject(viewModel) // ✅ PASAR EL MENU VIEWMODEL
                             .navigationTransition(.zoom(sourceID: "addButton_\(item.id)", in: namespace.wrappedValue))
-
                     } label: {
                         Image(systemName: "plus")
                             .bold()

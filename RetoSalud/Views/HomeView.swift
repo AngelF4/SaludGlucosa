@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var viewModel: MenuViewModel
     @State private var selectedDate: Date = .now
     @State private var scrollOffset: CGFloat = 0
     @Environment(\.colorScheme) private var colorScheme
@@ -63,7 +64,7 @@ struct HomeView: View {
                 .frame(height: 0)
                 
                 DateCarouselView(selectedDate: $selectedDate)
-                TimelineView(items: timelineItems, namespace: _namespace)
+                TimelineView(items: generateTimelineItems(), namespace: _namespace)
                     .padding(.horizontal, 30)
             }
             .coordinateSpace(name: "scroll")
@@ -81,6 +82,24 @@ struct HomeView: View {
                     Image(systemName: "person.circle")
                         .font(.system(size: 25))
                 }
+            }
+        }
+    }
+    private func generateTimelineItems() -> [TimelineItem] {
+        if viewModel.selectedFoods.isEmpty {
+            return [
+                TimelineItem(iconName: "sunrise.fill", title: "Desayuno", subtitle: "Toca para registrar tu desayuno y mantener tu glucosa estable", foregroundStyle: .yellow),
+                TimelineItem(iconName: "sun.max.fill", title: "Comida", subtitle: "Toca para registrar lo que comiste y evitar picos de glucosa", foregroundStyle: .orange),
+                TimelineItem(iconName: "moon.fill", title: "Cena", subtitle: "Toca para agregar tu cena y cuidar tus niveles de glucosa", foregroundStyle: .indigo)
+            ]
+        } else {
+            return viewModel.selectedFoods.map { food in
+                TimelineItem(
+                    iconName: "leaf.fill",
+                    title: food.name,
+                    subtitle: "Este alimento se añadió recientemente",
+                    foregroundStyle: .green
+                )
             }
         }
     }

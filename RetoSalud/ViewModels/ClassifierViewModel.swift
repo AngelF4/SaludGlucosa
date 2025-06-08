@@ -45,7 +45,14 @@ class ClassifierViewModel: ObservableObject {
                     var clasificado = false
                     for result in results where result.confidence > 0.5 {
                         let id = result.identifier.lowercased()
-                        if let traducido = traducciones[id],
+                        let clave = traducciones[id] ?? {
+                            if let similar = buscarTraduccionSimilar(id) {
+                                return traducciones[similar]
+                            }
+                            return nil
+                        }()
+
+                        if let traducido = clave,
                            let ig = igDictionary[traducido] {
                             let file = ImageFile(name: traducido.capitalized, url: url, ig: ig)
                             temp.append(file)
@@ -65,7 +72,7 @@ class ClassifierViewModel: ObservableObject {
             }
         }
 
-        let prioridad: [TipoAlimento: Int] = [.fibra: 0, .proteina: 1, .carbohidrato: 2]
+        let _: [TipoAlimento: Int] = [.fibra: 0, .proteina: 1, .carbohidrato: 2]
 
         let ordenados = temp.sorted {
             let tipo1 = tipoAlimento[$0.name.lowercased()] ?? .carbohidrato
@@ -113,6 +120,22 @@ class ClassifierViewModel: ObservableObject {
     }
 }
 
+func buscarTraduccionSimilar(_ id: String) -> String? {
+    let idLower = id.lowercased()
+    var mejorCoincidencia: String?
+    var distanciaMinima = Int.max
+
+    for clave in traducciones.keys {
+        let distancia = levenshtein(idLower, clave)
+        if distancia < distanciaMinima && distancia <= 2 { // ajusta el umbral si deseas
+            distanciaMinima = distancia
+            mejorCoincidencia = clave
+        }
+    }
+
+    return mejorCoincidencia
+}
+
 func ordenarAlimentosPorPrioridad(_ alimentos: [FoodItem]) -> [FoodItem] {
     let prioridad: [TipoAlimento: Int] = [.fibra: 0, .proteina: 1, .carbohidrato: 2]
     
@@ -131,15 +154,32 @@ func ordenarAlimentosPorPrioridad(_ alimentos: [FoodItem]) -> [FoodItem] {
     }
 }
 
-func normalizarNombre(_ nombre: String) -> String {
-    let lowercased = nombre.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-    
-    // Reglas simples de singularización (puedes expandirlas)
-    if lowercased.hasSuffix("es") {
-        return String(lowercased.dropLast(2))
-    } else if lowercased.hasSuffix("s") {
-        return String(lowercased.dropLast(1))
+func levenshtein(_ aStr: String, _ bStr: String) -> Int {
+    let a = Array(aStr)
+    let b = Array(bStr)
+
+    var dist = [[Int]](repeating: [Int](repeating: 0, count: b.count + 1), count: a.count + 1)
+
+    for i in 0...a.count {
+        dist[i][0] = i
     }
-    
-    return lowercased
+    for j in 0...b.count {
+        dist[0][j] = j
+    }
+
+    for i in 1...a.count {
+        for j in 1...b.count {
+            if a[i - 1] == b[j - 1] {
+                dist[i][j] = dist[i - 1][j - 1]
+            } else {
+                dist[i][j] = min(
+                    dist[i - 1][j] + 1,
+                    dist[i][j - 1] + 1,
+                    dist[i - 1][j - 1] + 1
+                )
+            }
+        }
+    }
+
+    return dist[a.count][b.count]
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var appState: AppState
     @State private var pageIndex = 0
     private let pages: [Page] = Page.samplePages
     private let dotAppearance = UIPageControl.appearance()
@@ -43,7 +44,10 @@ struct ContentView: View {
                     
                     // Botones de navegación
                     VStack {
-                        NavigationLink(destination: SignUpView()) {
+                        NavigationLink {
+                            SignUpView()
+                                .environmentObject(appState)
+                        } label: {
                             Text("Regístrate")
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
@@ -61,8 +65,11 @@ struct ContentView: View {
                                 .cornerRadius(10)
                                 .padding([.horizontal, .bottom])
                         }
-                        
-                        NavigationLink(destination: SignInView()) {
+
+                        NavigationLink {
+                            SignInView()
+                                .environmentObject(appState)
+                        } label: {
                             Text("Inicia sesión")
                                 .foregroundColor(.pink)
                                 .frame(maxWidth: .infinity)

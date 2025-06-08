@@ -7,11 +7,26 @@
 
 import SwiftUI
 
+
 @main
 struct RetoSaludApp: App {
+    @StateObject private var appState: AppState
+
+    init() {
+        _appState = StateObject(wrappedValue: AppState())
+    }
+
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appState)
         }
     }
 }
+
+@MainActor
+final class AppState: ObservableObject {
+    @Published var menuViewModel = MenuViewModel()
+}
+

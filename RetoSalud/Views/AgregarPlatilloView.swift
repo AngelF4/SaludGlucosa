@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct AgregarPlatilloView: View {
-    @StateObject private var viewModel = MenuViewModel()
+    @EnvironmentObject var viewModel: MenuViewModel
     @State private var showingCamera = false
     @State private var selectedItems: [PhotosPickerItem] = []
     @StateObject private var classifierViewModel = ClassifierViewModel()

@@ -307,7 +307,7 @@ struct DishDetailView: View {
 }
 
 #Preview {
-    @Previewable @StateObject var viewModel = MenuViewModel()
+    @Previewable @EnvironmentObject var viewModel: MenuViewModel
     
     DishDetailView(
         dish: Dish(
