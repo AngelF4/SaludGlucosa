@@ -16,12 +16,18 @@ struct DishDetailView: View {
 
     var body: some View {
         ScrollView {
-            Image(dish.imageName)
-                .resizable()
-                .scaledToFit()
-                .frame(height: 200)
-                .cornerRadius(12)
-                .padding()
+            AsyncImage(url: dish.imageURL) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .cornerRadius(12)
+                    .padding()
+            } placeholder: {
+                Color.gray.opacity(0.3)
+            }
+            .frame(width: 150, height: 100)
+            .clipped()
+                
 
             VStack(alignment: .leading, spacing: 16) {
                 Text(dish.name)
@@ -71,7 +77,7 @@ struct DishDetailView: View {
 }
 
 #Preview {
-    DishDetailView(dish: Dish(name: "Tacos de media noche", imageName: "hola", calories: 200, description: "Unos tacos bien ricos", glycemicEffects: ["Uno", "Dos"], ingredients: [Ingredient(name: "Zzanahoria", emoji: "🥕", portion: "150"),
+    DishDetailView(dish: Dish(name: "Tacos de media noche", imageURL: URL(string: "https://cdn.pixabay.com/photo/2020/07/09/19/53/ensalada-5388581_1280.jpg")!, calories: 200, description: "Unos tacos bien ricos", glycemicEffects: ["Uno", "Dos"], ingredients: [Ingredient(name: "Zzanahoria", emoji: "🥕", portion: "150"),
                                                                                                                                                                                    Ingredient(name: "Tortilla", emoji: "🌮", portion: "200")
                                                                                                                                                                                   ]))
 }

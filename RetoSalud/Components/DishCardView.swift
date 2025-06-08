@@ -9,16 +9,21 @@ import SwiftUI
 
 struct DishCardView: View {
     let dish: Dish
-
+    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Image(dish.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 250, height: 150)
-                .clipped()
-                .cornerRadius(12)
-
+            AsyncImage(url: dish.imageURL) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+            } placeholder: {
+                Color.gray.opacity(0.3)
+            }
+            .frame(width: 250, height: 150)
+            .clipped()
+            .cornerRadius(12)
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text(dish.name)
                     .font(.headline)

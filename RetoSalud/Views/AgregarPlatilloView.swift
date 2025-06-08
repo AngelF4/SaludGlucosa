@@ -20,10 +20,47 @@ struct AgregarPlatilloView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(category.dishes) { dish in
-                                DishCardView(dish: dish)
-                                    .onTapGesture {
-                                        viewModel.selectedDish = dish
+                                VStack(alignment: .leading, spacing: 8) {
+                                    AsyncImage(url: dish.imageURL) { phase in
+                                        switch phase {
+                                        case .empty:
+                                            ZStack {
+                                                Color.gray.opacity(0.3)
+                                                ProgressView()
+                                            }
+                                            .frame(width: 150, height: 100)
+                                        case .success(let image):
+                                            image
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 200, height: 100)
+                                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                        case .failure:
+                                            ZStack {
+                                                Color.gray.opacity(0.3)
+                                                Image(systemName: "photo")
+                                                    .font(.largeTitle)
+                                                    .foregroundColor(.white)
+                                            }
+                                            .frame(width: 150, height: 100)
+                                        @unknown default:
+                                            EmptyView()
+                                        }
                                     }
+                                    Text(dish.name)
+                                        .font(.headline)
+                                    Text("\(dish.calories) kcal")
+                                        .font(.subheadline)
+                                    Text(dish.description)
+                                        .font(.caption)
+                                        .lineLimit(2)
+                                        .frame(width: 200)
+                                }
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 8).fill(Color(.systemBackground)).shadow(radius: 2))
+                                .onTapGesture {
+                                    viewModel.selectedDish = dish
+                                }
                             }
                         }
                         .padding(.horizontal)

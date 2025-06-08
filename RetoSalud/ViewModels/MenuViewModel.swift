@@ -20,7 +20,7 @@ class MenuViewModel: ObservableObject {
             Category(name: "Bajo (120-150)", dishes: [
                 Dish(
                     name: "Ensalada",
-                    imageName: "ensalada",
+                    imageURL: URL(string: "https://cdn.pixabay.com/photo/2020/07/09/19/53/ensalada-5388581_1280.jpg")!,
                     calories: 90,
                     description: "Frescura de lechuga, pepino y zanahoria con aderezo ligero.",
                     glycemicEffects: ["5g carbohidratos netos 🥗", "Incremento de 5–8 mg/dL"],
@@ -32,7 +32,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Pescado a la plancha",
-                    imageName: "pescado_plancha",
+                    imageURL: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Filete_de_pescado.jpg/256px-Filete_de_pescado.jpg")!,
                     calories: 150,
                     description: "Filete de pescado blanco con hierbas y limón.",
                     glycemicEffects: ["0g carbohidratos netos 🐟", "Sin efecto significativo"],
@@ -43,7 +43,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Jugo verde",
-                    imageName: "jugo_verde",
+                    imageURL: URL(string: "https://images.pexels.com/photos/4055632/pexels-photo-4055632.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 70,
                     description: "Mezcla de espinacas, manzana y apio licuados.",
                     glycemicEffects: ["8g carbohidratos netos 🥤", "Incremento de 6–10 mg/dL"],
@@ -55,7 +55,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Avena",
-                    imageName: "avena",
+                    imageURL: URL(string: "https://images.pexels.com/photos/7045693/pexels-photo-7045693.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 180,
                     description: "Avena cocida con agua y toque de canela.",
                     glycemicEffects: ["27g carbohidratos netos 🌾", "Incremento de 12–15 mg/dL"],
@@ -66,7 +66,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Lentejas",
-                    imageName: "lentejas",
+                    imageURL: URL(string: "https://images.pexels.com/photos/6164016/pexels-photo-6164016.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 160,
                     description: "Guiso de lentejas con verduras y especias.",
                     glycemicEffects: ["20g carbohidratos netos 🥣", "Incremento de 10–14 mg/dL"],
@@ -80,7 +80,7 @@ class MenuViewModel: ObservableObject {
             Category(name: "Medio (150-160)", dishes: [
                 Dish(
                     name: "Pollo a la plancha",
-                    imageName: "pollo_plancha",
+                    imageURL: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Pollo_a_la_Plancha.jpg/256px-Pollo_a_la_Plancha.jpg")!,
                     calories: 200,
                     description: "Pechuga de pollo marinada en hierbas y asada.",
                     glycemicEffects: ["0g carbohidratos netos 🍗", "Sin efecto significativo"],
@@ -91,7 +91,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Carne asada",
-                    imageName: "carne_asada",
+                    imageURL: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Carne_asada.jpg/256px-Carne_asada.jpg")!,
                     calories: 250,
                     description: "Tiras de res a la parrilla con especias.",
                     glycemicEffects: ["0g carbohidratos netos 🥩", "Sin efecto significativo"],
@@ -102,7 +102,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Cremas",
-                    imageName: "cremas",
+                    imageURL: URL(string: "https://images.pexels.com/photos/410648/pexels-photo-410648.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 140,
                     description: "Sopa crema de verduras con leche desnatada.",
                     glycemicEffects: ["10g carbohidratos netos 🥣", "Incremento de 8–12 mg/dL"],
@@ -113,7 +113,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Sopas",
-                    imageName: "sopas",
+                    imageURL: URL(string: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 150,
                     description: "Sopa de pollo con verduras.",
                     glycemicEffects: ["12g carbohidratos netos 🍲", "Incremento de 7–11 mg/dL"],
@@ -124,7 +124,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Empanadas integrales",
-                    imageName: "empanadas_integrales",
+                    imageURL: URL(string: "https://images.pexels.com/photos/4144592/pexels-photo-4144592.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 220,
                     description: "Empanadas horneadas rellenas de queso bajo en grasa.",
                     glycemicEffects: ["30g carbohidratos netos 🥟", "Incremento de 15–20 mg/dL"],
@@ -135,7 +135,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Puré de camote",
-                    imageName: "pure_camote",
+                    imageURL: URL(string: "https://images.pexels.com/photos/6759513/pexels-photo-6759513.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 180,
                     description: "Camote cocido y triturado con toque de mantequilla ligera.",
                     glycemicEffects: ["25g carbohidratos netos 🍠", "Incremento de 14–18 mg/dL"],
@@ -148,7 +148,7 @@ class MenuViewModel: ObservableObject {
             Category(name: "Alto (≥170)", dishes: [
                 Dish(
                     name: "Pasta",
-                    imageName: "pasta",
+                    imageURL: URL(string: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 330,
                     description: "Pasta con salsa de tomate y queso rallado.",
                     glycemicEffects: ["45g carbohidratos netos 🍝", "Incremento de 25–30 mg/dL"],
@@ -159,7 +159,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Puré de papa",
-                    imageName: "pure_papa",
+                    imageURL: URL(string: "https://images.pexels.com/photos/1111256/pexels-photo-1111256.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 200,
                     description: "Puré cremoso de papa con leche entera.",
                     glycemicEffects: ["35g carbohidratos netos 🥔", "Incremento de 20–25 mg/dL"],
@@ -170,7 +170,7 @@ class MenuViewModel: ObservableObject {
                 ),
                 Dish(
                     name: "Pan",
-                    imageName: "pan",
+                    imageURL: URL(string: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=256")!,
                     calories: 250,
                     description: "Rebanada de pan blanco industrial.",
                     glycemicEffects: ["50g carbohidratos netos 🍞", "Incremento de 30–35 mg/dL"],
