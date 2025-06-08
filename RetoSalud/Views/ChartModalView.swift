@@ -18,12 +18,12 @@ struct ChartModalView: View {
     // Datos de ejemplo para las 3 comidas del día
     let data: [GlucoseData] = [
         GlucoseData(time: Calendar.current.date(bySettingHour: 6, minute: 0, second: 0, of: .now)!, level:  90),
-        GlucoseData(time: Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: .now)!, level: 140),
-        GlucoseData(time: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: .now)!, level: 100),
-        GlucoseData(time: Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: .now)!, level: 135),
+        GlucoseData(time: Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: .now)!, level: 175),
+        GlucoseData(time: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: .now)!, level: 110),
+        GlucoseData(time: Calendar.current.date(bySettingHour: 15, minute: 0, second: 0, of: .now)!, level: 165),
         GlucoseData(time: Calendar.current.date(bySettingHour: 18, minute: 0, second: 0, of: .now)!, level:  95),
-        GlucoseData(time: Calendar.current.date(bySettingHour: 20, minute: 0, second: 0, of: .now)!, level: 120),
-        GlucoseData(time: Calendar.current.date(bySettingHour: 23, minute: 0, second: 0, of: .now)!, level:  90),
+        GlucoseData(time: Calendar.current.date(bySettingHour: 20, minute: 0, second: 0, of: .now)!, level: 140),
+        GlucoseData(time: Calendar.current.date(bySettingHour: 23, minute: 0, second: 0, of: .now)!, level:  87),
     ]
 
     var body: some View {
