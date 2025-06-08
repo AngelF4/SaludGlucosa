@@ -23,8 +23,7 @@ let igDictionary: [String: Int] = [
     "arroz blanco": 73, "pasta integral": 42, "pasta blanca": 49,
     "pan integral": 50, "pan blanco": 75, "tortilla de maiz": 52,
     "tortilla de harina": 70, "cereal de avena": 55, "zucaritas": 82,
-    "repostería": 85, "galletas dulces": 77, "yogur natural": 35,
-    "leche entera": 41, "leche descremada": 32, "queso": 0,
+    "repostería": 85, "galletas dulces": 77, "yogur natural": 35, "queso": 0,
     "huevo": 0, "pollo": 0, "carne de res": 0, "pescado": 0,
     "tofu": 15, "bebida azucarada": 70, "jugo de naranja": 50,
     "jugo verde": 30, "crema": 10, "sopa de verduras": 25,
@@ -62,8 +61,6 @@ let tipoAlimento: [String: TipoAlimento] = [
     "tofu": .proteina,
     "empanadas integrales": .proteina,
     "leche": .proteina,
-    "leche entera": .proteina,
-    "leche descremada": .proteina,
 
     // Carbohidrato
     "manzana": .carbohidrato,

@@ -10,7 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     @StateObject private var viewModel = SignupViewModel()
     @State private var step: Int = 0
-    @State private var showHome = false
+    @State var showHome = false
     @State private var hasModifiedDetails = false
     @FocusState private var isUsernameFocused: Bool
     @FocusState private var isEmailFocused: Bool
