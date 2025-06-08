@@ -75,6 +75,7 @@ struct HomeView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
+                    ProfileView()
                     
                 } label: {
                     Image(systemName: "person.circle")

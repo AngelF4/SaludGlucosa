@@ -114,7 +114,9 @@ struct SignUpView: View {
                 }
             }
             .fullScreenCover(isPresented: $showHome) {
-                HomeView()
+                NavigationStack {
+                    HomeView()
+                }
             }
             .alert("Información", isPresented: $viewModel.showAlert) {
                 Button("OK") { }

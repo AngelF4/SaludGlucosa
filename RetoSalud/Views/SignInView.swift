@@ -127,7 +127,9 @@ struct SignInView: View {
             }
         }
         .fullScreenCover(isPresented: $showHome) {
-            HomeView()
+            NavigationStack {
+                HomeView()
+            }
         }
         .onTapGesture {
             hideKeyboard()
