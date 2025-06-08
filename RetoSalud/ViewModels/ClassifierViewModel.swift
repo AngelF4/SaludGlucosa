@@ -70,9 +70,17 @@ class ClassifierViewModel: ObservableObject {
         let ordenados = temp.sorted {
             let tipo1 = tipoAlimento[$0.name.lowercased()] ?? .carbohidrato
             let tipo2 = tipoAlimento[$1.name.lowercased()] ?? .carbohidrato
-            return prioridad[tipo1, default: 3] < prioridad[tipo2, default: 3]
+            let prioridad: [TipoAlimento: Int] = [.fibra: 0, .proteina: 1, .carbohidrato: 2]
+            
+            let p1 = prioridad[tipo1, default: 3]
+            let p2 = prioridad[tipo2, default: 3]
+            
+            if p1 != p2 {
+                return p1 < p2
+            } else {
+                return $0.ig < $1.ig // Desempate por menor índice glucémico
+            }
         }
-
         alimentos = ordenados
         resultadoIG = ordenados.isEmpty ? nil : ordenados.map { $0.ig }.reduce(0, +) / ordenados.count
         observacionesSinIG = ordenados.isEmpty ? sinIG : []
