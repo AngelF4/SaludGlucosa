@@ -58,13 +58,8 @@ class SigninViewModel: ObservableObject {
     }
     
     private func performLogin() {
-        // Aquí iría tu lógica real de autenticación
-        // Por ejemplo, llamada a tu backend
-        
-        // Simulación de éxito/error
         if username.lowercased() == "admin" && password == "123456" {
             isLoggedIn = true
-            showError("¡Bienvenido!")
         } else {
             showError("Usuario o contraseña incorrectos")
         }

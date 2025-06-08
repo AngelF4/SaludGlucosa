@@ -11,6 +11,7 @@ struct SignInView: View {
     @StateObject private var viewModel = SigninViewModel()
     @FocusState private var isUsernameFocused: Bool
     @FocusState private var isPasswordFocused: Bool
+    @State private var showHome = false
     
     var body: some View {
         ZStack {
@@ -119,6 +120,14 @@ struct SignInView: View {
                         .frame(height: 50)
                 }
             }
+        }
+        .onChange(of: viewModel.isLoggedIn) { isLogged in
+            if isLogged {
+                showHome = true
+            }
+        }
+        .fullScreenCover(isPresented: $showHome) {
+            HomeView()
         }
         .onTapGesture {
             hideKeyboard()
