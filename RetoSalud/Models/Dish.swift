@@ -5,7 +5,7 @@
 //  Created by Angel HG on 07/06/25.
 //
 
-
+import Foundation
 
 struct Dish: Identifiable {
     let id = UUID()

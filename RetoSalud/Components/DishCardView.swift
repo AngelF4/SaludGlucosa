@@ -1,3 +1,12 @@
+//
+//  DishCardView.swift
+//  RetoSalud
+//
+//  Created by Angel HG on 07/06/25.
+//
+
+import SwiftUI
+
 struct DishCardView: View {
     let dish: Dish
 

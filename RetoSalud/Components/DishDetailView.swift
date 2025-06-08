@@ -1,3 +1,11 @@
+//
+//  DishDetailView.swift
+//  RetoSalud
+//
+//  Created by Angel HG on 07/06/25.
+//
+
+import SwiftUI
 
 struct DishDetailView: View {
     @State private var dish: Dish
@@ -51,6 +59,7 @@ struct DishDetailView: View {
 
                 Text("Ingredientes")
                     .font(.headline)
+                Text("Por una porcion de 100g")
 
                 ForEach($dish.ingredients) { $ingredient in
                     IngredientRowView(ingredient: $ingredient)
@@ -59,4 +68,10 @@ struct DishDetailView: View {
             .padding(.horizontal)
         }
     }
+}
+
+#Preview {
+    DishDetailView(dish: Dish(name: "Tacos de media noche", imageName: "hola", calories: 200, description: "Unos tacos bien ricos", glycemicEffects: ["Uno", "Dos"], ingredients: [Ingredient(name: "Zzanahoria", emoji: "🥕", portion: "150"),
+                                                                                                                                                                                   Ingredient(name: "Tortilla", emoji: "🌮", portion: "200")
+                                                                                                                                                                                  ]))
 }
