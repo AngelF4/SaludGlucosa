@@ -47,7 +47,7 @@ struct SecureInputAuthField: View {
             .padding(.vertical, 14)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.white.opacity(0.8))
+                    .fill(Color(.systemBackground).opacity(0.8))
                     .shadow(color: Color.pink.opacity(0.1), radius: 8, x: 0, y: 2)
             )
             .overlay(

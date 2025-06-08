@@ -16,14 +16,32 @@ struct Page: Identifiable, Equatable {
     var imageUrl: String
     var tag: Int
     
-    static var samplePage = Page(name: "taggo", description: "typeshi", imageUrl: "streetstickers", tag: 0)
+    static var samplePage = Page(
+        name: "Controla tu glucosa",
+        description: "Añade tus comidas al calendario y deja que la inteligencia artificial las ordene para mantener tus niveles de glucosa lo más bajos posible.",
+        imageUrl: "calendarIcon",
+        tag: 0
+    )
     
     static var samplePages: [Page] = [
-        Page(name: "Función de la app 1", description: "Información rapida de la función 1", imageUrl: "streetstickers", tag: 0),
-    
-        Page(name: "Función de la app 2", description: "Información rapida de la función 2", imageUrl: "streetstickers", tag: 1),
-    
-        Page(name: "Función de la app 3", description: "Información rapida de la función 3", imageUrl: "streetstickers", tag: 2),
+        Page(
+            name: "Controla tu glucosa",
+            description: "Agrega tus comidas y deja que la IA te ayude a mantener la glucosa baja.",
+            imageUrl: "calendarIcon",
+            tag: 0
+        ),
+        Page(
+            name: "Registra tus alimentos",
+            description: "Consulta tus alimentos y sus ingredientes. Añade nuevos fácilmente.",
+            imageUrl: "foodListIcon",
+            tag: 1
+        ),
+        Page(
+            name: "Revisa tu historial",
+            description: "Revisa tus comidas pasadas y un gráfico estimado de glucosa.",
+            imageUrl: "historyGraphIcon",
+            tag: 2
+        )
     ]
     
 }
