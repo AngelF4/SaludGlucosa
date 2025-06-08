@@ -25,10 +25,10 @@ struct PageView: View {
             
             Text(page.name)
                 .font(.title)
-                .fontWeight(Font.Weight.semibold)
+                .fontWeight(.semibold)
             
             Text(page.description)
-                .font(.subheadline)
+                .font(.title3)
                 .frame(width: 300)
         }
     }

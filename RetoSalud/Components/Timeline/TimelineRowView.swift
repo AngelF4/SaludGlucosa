@@ -52,7 +52,7 @@ struct TimelineRowView: View {
                     Spacer()
                     NavigationLink {
                         AgregarPlatilloView()
-                            .navigationTransition(.zoom(sourceID: "zoom", in: namespace.wrappedValue))
+                            .navigationTransition(.zoom(sourceID: "addButton_\(item.id)", in: namespace.wrappedValue))
 
                     } label: {
                         Image(systemName: "plus")
@@ -69,6 +69,7 @@ struct TimelineRowView: View {
             .background(item.foregroundStyle.quaternary)
             .cornerRadius(20)
             .padding(.bottom)
+            .matchedTransitionSource(id: "addButton_\(item.id)", in: namespace.wrappedValue)
         }
     }
 }
