@@ -11,31 +11,29 @@ struct AgregarPlatilloView: View {
     @StateObject private var viewModel = MenuViewModel()
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    ForEach(viewModel.categories) { category in
-                        Text(category.name)
-                            .font(.headline)
-                            .padding(.horizontal)
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 12) {
-                                ForEach(category.dishes) { dish in
-                                    DishCardView(dish: dish)
-                                        .onTapGesture {
-                                            viewModel.selectedDish = dish
-                                        }
-                                }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                ForEach(viewModel.categories) { category in
+                    Text(category.name)
+                        .font(.headline)
+                        .padding(.horizontal)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 12) {
+                            ForEach(category.dishes) { dish in
+                                DishCardView(dish: dish)
+                                    .onTapGesture {
+                                        viewModel.selectedDish = dish
+                                    }
                             }
-                            .padding(.horizontal)
                         }
+                        .padding(.horizontal)
                     }
                 }
-                .navigationTitle("Agregar platillo")
             }
-            .sheet(item: $viewModel.selectedDish) { dish in
-                DishDetailView(dish: dish)
-            }
+            .navigationTitle("Agregar platillo")
+        }
+        .sheet(item: $viewModel.selectedDish) { dish in
+            DishDetailView(dish: dish)
         }
     }
 }
@@ -43,5 +41,7 @@ struct AgregarPlatilloView: View {
 // MARK: - Preview
 
 #Preview {
-    AgregarPlatilloView()
+    NavigationStack {
+        AgregarPlatilloView()
+    }
 }
