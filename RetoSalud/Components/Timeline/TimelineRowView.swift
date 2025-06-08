@@ -28,7 +28,7 @@ struct TimelineRowView: View {
                 // Icon circle
                 Circle()
                     .stroke(Color.pink.secondary, lineWidth: 2)
-                    .background(Circle().fill(Color.white))
+                    .background(Circle().fill(Color.white.opacity(0.75)))
                     .frame(width: 32, height: 32)
                     .overlay(
                         Image(systemName: item.iconName)
