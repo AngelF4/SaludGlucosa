@@ -18,7 +18,7 @@ struct InputAuthField: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Image(systemName: icon)
-                    .foregroundColor(.pink)
+                    .foregroundColor(.accentColor)
                     .frame(width: 20)
                 Text(title)
                     .font(.system(size: 14, weight: .medium))
@@ -31,16 +31,30 @@ struct InputAuthField: View {
                 .padding(.vertical, 14)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.white.opacity(0.8))
-                        .shadow(color: Color.pink.opacity(0.1), radius: 8, x: 0, y: 2)
+                        .fill(Color(.systemBackground).opacity(0.8))
+                        .shadow(color: Color.accentColor.opacity(0.1), radius: 8, x: 0, y: 2)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(isFocused ? Color.pink : Color.clear, lineWidth: 2)
+                        .stroke(isFocused ? Color.accentColor : Color.clear, lineWidth: 2)
                 )
                 .focused($isFocused)
                 .autocapitalization(.none)
                 .textContentType(textContentType)
         }
     }
+}
+
+#Preview {
+    @Previewable @State var text = ""
+    @FocusState var isFocused: Bool
+
+    InputAuthField(
+        icon: "person",
+        title: "Usuario",
+        placeholder: "Ingresa aquí",
+        text: $text,
+        isFocused: $isFocused
+    )
+    .padding()
 }
