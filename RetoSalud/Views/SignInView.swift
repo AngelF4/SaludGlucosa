@@ -16,8 +16,6 @@ struct SignInView: View {
         ZStack {
             ScrollView {
                 VStack(spacing: 30) {
-                    Spacer()
-                        .frame(height: 60)
                     
                     // Header
                     VStack(spacing: 8) {

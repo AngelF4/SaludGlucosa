@@ -15,16 +15,18 @@ class SignupViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
     @Published var isSecured: Bool = true
+    @Published var isConfirmSecured: Bool = true
     @Published var isLoading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
-    @Published var isLoggedIn: Bool = false
     @Published var showSignin: Bool = false
+    @Published var age: Int = 20
+    @Published var hasDiabetes: String = "No"
 
     
     // MARK: - Validation
     var isFormValid: Bool {
-        !username.isEmpty && !password.isEmpty && password.count >= 6
+        !username.isEmpty && !password.isEmpty && password.count >= 6 && confirmPassword.count >= 6 && password == confirmPassword
     }
     
     var usernameError: String? {
@@ -60,7 +62,15 @@ class SignupViewModel: ObservableObject {
         isSecured.toggle()
     }
     
-    func login() {
+    func toggleConfirmPasswordVisibility() {
+        isConfirmSecured.toggle()
+    }
+    
+    var isDetailsValid: Bool {
+        age > 0 && !hasDiabetes.isEmpty
+    }
+    
+    func register() {
         guard isFormValid else {
             showError("Por favor completa todos los campos correctamente")
             return
@@ -70,22 +80,11 @@ class SignupViewModel: ObservableObject {
         
         // Simulación de llamada a API
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.performLogin()
+            self.performRegister()
         }
     }
     
-    private func performLogin() {
-        // Aquí iría tu lógica real de autenticación
-        // Por ejemplo, llamada a tu backend
-        
-        // Simulación de éxito/error
-        if username.lowercased() == "admin" && password == "123456" {
-            isLoggedIn = true
-            showError("¡Bienvenido!")
-        } else {
-            showError("Usuario o contraseña incorrectos")
-        }
-        
+    private func performRegister() {
         isLoading = false
     }
     

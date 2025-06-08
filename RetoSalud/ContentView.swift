@@ -15,8 +15,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-              
-
+                
+                
                 VStack(spacing: 0) {
                     // TabView ocupa el espacio principal
                     TabView(selection: $pageIndex) {
@@ -30,6 +30,7 @@ struct ContentView: View {
                     .tabViewStyle(.page)
                     .onAppear {
                         UIPageControl.appearance().isHidden = true
+                        startAutoScroll()
                     }
                     
                     
@@ -60,7 +61,7 @@ struct ContentView: View {
                                 .cornerRadius(10)
                                 .padding([.horizontal, .bottom])
                         }
-
+                        
                         NavigationLink(destination: SignInView()) {
                             Text("Inicia sesión")
                                 .foregroundColor(.pink)
@@ -70,6 +71,19 @@ struct ContentView: View {
                                 .padding([.horizontal, .bottom])
                         }
                     }
+                }
+            }
+        }
+    }
+    
+    // MARK: - Auto Scroll
+    private func startAutoScroll() {
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
+            withAnimation {
+                if pageIndex < pages.count - 1 {
+                    pageIndex += 1
+                } else {
+                    pageIndex = 0
                 }
             }
         }
