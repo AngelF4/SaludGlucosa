@@ -78,7 +78,7 @@ struct HomeView: View {
                     
                 } label: {
                     Image(systemName: "person.circle")
-                        .font(.system(size: 30))
+                        .font(.system(size: 25))
                 }
             }
         }
@@ -93,9 +93,9 @@ struct HomeView: View {
 }
 
 private let timelineItems: [TimelineItem] = [
-    TimelineItem(iconName: "sunrise.fill", title: "Trackear", subtitle: "Tu glucosa se mantiene dentro del rango tras el desayuno 80% de los días", foregroundStyle: .yellow),
-    TimelineItem(iconName: "sun.max.fill", title: "Medir alimentos", subtitle: "Tu mayor variabilidad de glucosa se presenta después del almuerzo", foregroundStyle: .orange),
-    TimelineItem(iconName: "moon.fill", title: "Medir alimentos", subtitle: "Tu mayor variabilidad de glucosa se presenta después de la cena", foregroundStyle: .indigo)
+    TimelineItem(iconName: "sunrise.fill", title: "Desayuno", subtitle: "Toca para registrar tu desayuno y mantener tu glucosa estable", foregroundStyle: .yellow),
+    TimelineItem(iconName: "sun.max.fill", title: "Comida", subtitle: "Toca para registrar lo que comiste y evitar picos de glucosa", foregroundStyle: .orange),
+    TimelineItem(iconName: "moon.fill", title: "Cena", subtitle: "Toca para agregar tu cena y cuidar tus niveles de glucosa", foregroundStyle: .indigo)
 ]
 
 private struct ScrollOffsetKey: PreferenceKey {

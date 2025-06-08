@@ -17,23 +17,23 @@ private struct dataCard: Identifiable {
 
 struct ModalView: View {
     
-    private let data = [
-        dataCard(iconName: "sunrise.fill", title: "Desayuno", subtitle: [
-            "Tu comida 1",
-            "Tu comida 2",
-            "Tu comida 3"
-        ], foregroundStyle: .yellow),
-        dataCard(iconName: "sun.max.fill", title: "Comida", subtitle: [
-            "Tu comida 1",
-            "Tu comida 2",
-            "Tu comida 3"
-        ], foregroundStyle: .orange),
-        dataCard(iconName: "moon.fill", title: "Cena", subtitle: [
-            "Tu comida 1",
-            "Tu comida 2",
-            "Tu comida 3"
-        ], foregroundStyle: .indigo)
-    ]
+private let data = [
+    dataCard(iconName: "sunrise.fill", title: "Desayuno", subtitle: [
+        "Molletes de frijol con queso panela",
+        "Huevos a la mexicana",
+        "Pan integral con aguacate"
+    ], foregroundStyle: .yellow),
+    dataCard(iconName: "sun.max.fill", title: "Comida", subtitle: [
+        "Pollo en salsa verde con nopales",
+        "Tacos de pescado a la plancha",
+        "Ensalada de atún con verduras"
+    ], foregroundStyle: .orange),
+    dataCard(iconName: "moon.fill", title: "Cena", subtitle: [
+        "Crema de calabaza",
+        "Tostadas de pollo",
+        "Sándwich de pechuga de pavo"
+    ], foregroundStyle: .indigo)
+]
     
     let date: Date
     var body: some View {
