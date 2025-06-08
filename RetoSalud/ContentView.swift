@@ -70,6 +70,15 @@ struct ContentView: View {
                                 .cornerRadius(30)
                                 .padding([.horizontal, .bottom])
                         }
+                        
+                        NavigationLink(destination: TestView()) {
+                            Text("Test")
+                                .foregroundColor(.pink)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .cornerRadius(30)
+                                .padding([.horizontal, .bottom])
+                        }
                     }
                 }
             }
