@@ -112,3 +112,34 @@ class ClassifierViewModel: ObservableObject {
         return nil
     }
 }
+
+func ordenarAlimentosPorPrioridad(_ alimentos: [FoodItem]) -> [FoodItem] {
+    let prioridad: [TipoAlimento: Int] = [.fibra: 0, .proteina: 1, .carbohidrato: 2]
+    
+    return alimentos.sorted {
+        let tipo1 = tipoAlimento[$0.name.lowercased()] ?? .carbohidrato
+        let tipo2 = tipoAlimento[$1.name.lowercased()] ?? .carbohidrato
+
+        let p1 = prioridad[tipo1, default: 3]
+        let p2 = prioridad[tipo2, default: 3]
+
+        if p1 != p2 {
+            return p1 < p2
+        } else {
+            return $0.baseIncrease < $1.baseIncrease 
+        }
+    }
+}
+
+func normalizarNombre(_ nombre: String) -> String {
+    let lowercased = nombre.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+    
+    // Reglas simples de singularización (puedes expandirlas)
+    if lowercased.hasSuffix("es") {
+        return String(lowercased.dropLast(2))
+    } else if lowercased.hasSuffix("s") {
+        return String(lowercased.dropLast(1))
+    }
+    
+    return lowercased
+}

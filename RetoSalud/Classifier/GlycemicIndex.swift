@@ -36,7 +36,8 @@ let igDictionary: [String: Int] = [
     "empanadas integrales": 155,
     "sopas": 155,
     "puré de camote": 155,
-    "bebidas endulzadas": 170
+    "bebidas endulzadas": 170, "leche entera": 41, "leche": 41,
+    "leche descremada": 32,
     
 ]
 
@@ -60,6 +61,9 @@ let tipoAlimento: [String: TipoAlimento] = [
     "queso": .proteina,
     "tofu": .proteina,
     "empanadas integrales": .proteina,
+    "leche": .proteina,
+    "leche entera": .proteina,
+    "leche descremada": .proteina,
 
     // Carbohidrato
     "manzana": .carbohidrato,
@@ -100,5 +104,5 @@ let traducciones: [String: String] = [
     "mashed sweet potato": "puré de camote",
     "soups": "sopas",
     "whole wheat empanadas": "empanadas integrales",
-    "bread": "pan",
+    "bread": "pan", "leche": "milk"
 ]

@@ -12,12 +12,22 @@ struct DishCardView: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Image(dish.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 250, height: 150)
-                .clipped()
-                .cornerRadius(12)
+            AsyncImage(url: URL(string: dish.imageURL ?? "default valuestring: String")) { image in
+                image
+                    .resizable()
+                    .scaledToFill() // 🔁 Se adapta al tamaño del contenedor
+            } placeholder: {
+                Rectangle()
+                    .fill(Color.gray.opacity(0.2))
+                    .overlay(
+                        Image(systemName: "photo")
+                            .font(.largeTitle)
+                            .foregroundStyle(.gray)
+                    )
+            }
+            .frame(width: 250, height: 150)
+            .clipped()
+            .cornerRadius(12)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(dish.name)
